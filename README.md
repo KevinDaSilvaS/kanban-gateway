@@ -6,9 +6,9 @@ Change express-gateway to krakend gateway
 <p>The main reasons to replace express-gateway in project was: </p>
 
 1. Express-gateway last version was released with an apparently break in the configuration turning maintenance of the config very hard sometimes. 
-2. A native support(still not up and ready) to influxdb metrics. 
-3. Express gateway has its own influxdb plugin but it seemed a little bit more confuse to deal with plugins than krakend. 
-4. Performance, apparently the performance benchmarks of krakend are impressive and able to tame even the Kong and Tyk gateways Curiosity to try a new tool that seemed to fit better with my necessities.
+2. A native support(still not up and ready) to influxdb metrics. Express gateway has its own influxdb plugin but it seemed a little bit more confuse to deal with plugins than krakend. 
+3. Performance, apparently the performance benchmarks of krakend are impressive and able to tame even the Kong and Tyk gateways. 
+4. Curiosity to try a new tool that seemed to fit better with my necessities.
 
 <h2>Initializing the project</h2>
 <p>Start docker and run the following command in your terminal</p>
