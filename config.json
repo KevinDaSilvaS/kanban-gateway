@@ -1,0 +1,334 @@
+{
+  "version": 2,
+  "extra_config": {
+    "github_com/devopsfaith/krakend-cors": {
+      "allow_origins": [
+        "*"
+      ],
+      "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age": "12h",
+      "allow_methods": [
+        "GET",
+        "POST",
+        "DELETE",
+        "PATCH"
+      ]
+    },
+    "github_com/devopsfaith/krakend-opencensus": {
+      "sample_rate": 100,
+      "reporting_period": 1,
+      "exporters": {
+        "influxdb": {
+          "db": "kevinsbucket",
+          "address": "http://influxdb_influxdb_1:8086/"
+        }
+      }
+    }
+  },
+  "timeout": "3000ms",
+  "cache_ttl": "300s",
+  "output_encoding": "json",
+  "name": "kanban-gateway",
+  "port": 9091,
+  "endpoints": [
+    {
+      "endpoint": "/boards",
+      "method": "GET",
+      "output_encoding": "json",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/boards",
+          "encoding": "json",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "querystring_params": [
+        "page",
+        "limit"
+      ]
+    },
+    {
+      "endpoint": "/boards/{boardId}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/boards/{boardId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/boards",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/boards",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/boards/{boardId}",
+      "method": "PATCH",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/boards/{boardId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "PATCH",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/boards/{boardId}",
+      "method": "DELETE",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/boards/{boardId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "DELETE",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/tasks/{boardId}",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/tasks/{boardId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/tasks/{boardId}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "querystring_params": [
+        "page",
+        "limit"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/tasks/{boardId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/tasks/{boardId}/{taskId}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/tasks/{boardId}/{taskId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/tasks/{taskId}",
+      "method": "PATCH",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/tasks/{taskId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "PATCH",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/tasks/{taskId}",
+      "method": "DELETE",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/tasks/{taskId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "DELETE",
+          "extra_config": {},
+          "host": [
+            "http://kanban_kanbanapp_1:1747"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/comments",
+      "method": "POST",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/comments",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "POST",
+          "extra_config": {},
+          "host": [
+            "http://comments-kanban_comments_1:8835"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/comments/{taskId}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "querystring_params": [
+        "limit",
+        "page"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/comments/{taskId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://comments-kanban_comments_1:8835"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/comments/{taskId}/{commentId}",
+      "method": "GET",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/comments/{taskId}/{commentId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "GET",
+          "extra_config": {},
+          "host": [
+            "http://comments-kanban_comments_1:8835"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/comments/{commentId}",
+      "method": "PATCH",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/comments/{commentId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "PATCH",
+          "extra_config": {},
+          "host": [
+            "http://comments-kanban_comments_1:8835"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    },
+    {
+      "endpoint": "/comments/{commentId}",
+      "method": "DELETE",
+      "output_encoding": "no-op",
+      "extra_config": {},
+      "backend": [
+        {
+          "url_pattern": "/comments/{commentId}",
+          "encoding": "no-op",
+          "sd": "static",
+          "method": "DELETE",
+          "extra_config": {},
+          "host": [
+            "http://comments-kanban_comments_1:8835"
+          ],
+          "disable_host_sanitize": false
+        }
+      ]
+    }
+  ]
+}
