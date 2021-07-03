@@ -1,0 +1,25 @@
+version: '3.3'
+
+services: 
+    kanban_gateway:
+        image: devopsfaith/krakend
+        ports: 
+            - "${PORT}:9091"
+        volumes: 
+            - ./config.json:/etc/krakend/krakend.json
+        networks:
+            - kanban
+
+    rabbit-mq:
+        image: rabbitmq:3-management
+        hostname: ${HOSTNAME}
+        ports: 
+            - "${RABBITMQ_FST_PORT}:15672"
+            - "${RABBITMQ_SND_PORT}:5672"
+        networks:
+            - kanban
+
+networks:
+  kanban:
+      driver: overlay
+      attachable: true
