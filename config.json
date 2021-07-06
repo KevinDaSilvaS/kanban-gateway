@@ -16,13 +16,33 @@
         "PATCH"
       ]
     },
+    "github_com/devopsfaith/krakend-gologging": {
+      "level": "DEBUG",
+      "prefix": "[KRAKEND]",
+      "syslog": false,
+      "stdout": true,
+      "format": "default"
+    },
+    "github_com/devopsfaith/krakend-metrics": {
+      "collection_time": "60s",
+      "proxy_disabled": false,
+      "router_disabled": false,
+      "backend_disabled": false,
+      "endpoint_disabled": false,
+      "listen_address": ":8090"
+    },
     "github_com/devopsfaith/krakend-opencensus": {
       "sample_rate": 100,
       "reporting_period": 1,
+      "enabled_layers": {
+        "backend": true,
+        "router": true,
+        "pipe": true
+      },
       "exporters": {
-        "influxdb": {
-          "db": "kevinsbucket",
-          "address": "http://influxdb_influxdb_1:8086/"
+        "zipkin": {
+          "collector_url": "http://zipkin:9411/api/v2/spans",
+          "service_name": "krakend"
         }
       }
     }
