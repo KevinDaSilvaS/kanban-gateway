@@ -5,8 +5,22 @@ services:
         image: devopsfaith/krakend
         ports: 
             - "${PORT}:9091"
+            - "8090:8090"
+        environment: 
+            - INFLUXDB_BUCKET_NAME=${INFLUXDB_BUCKET_NAME}
+            - INFLUXDB_HOST=${INFLUXDB_HOST}
+            - INFLUXDB_PORT=${INFLUXDB_PORT}
+            - INFLUXDB_USER=${INFLUXDB_USER}
+            - INFLUXDB_PASSWORD=${INFLUXDB_PASSWORD}
         volumes: 
             - ./config.json:/etc/krakend/krakend.json
+        networks:
+            - kanban
+
+    zipkin:
+        image: openzipkin/zipkin
+        ports: 
+            - "${ZIPKIN_PORT}:9411"
         networks:
             - kanban
 
